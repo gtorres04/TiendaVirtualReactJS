@@ -1,0 +1,57 @@
+/* You can add global styles to this file, and also import other style files */
+body, h1{
+    margin: 0px;
+}
+.panel-catalogo-productos, .panel-detalle-producto{
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+.imagen-fondo-principal{
+    background-image: url('./assets/img/main-fondo.jpg');
+    height: 100%;
+}
+.container-info{
+    display: flex;
+    display: -webkit-flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+}
+.container-info > *{
+    width: 47%;
+    margin: 10px;
+}
+/***************************************************************/
+.campo-formulario > *{
+    display: block;
+}
+.msn-error, .campo-formulario span{
+    color: red;
+    text-shadow: 1.2px 1.5px black;
+}
+.container-login{
+    background-image: url('./assets/img/login-fondo.jpg');
+    background-repeat: no-repeat;
+    height: 630px;
+    padding-top: 10%;
+}
+.form-login label, .form-login h1{
+    color: white;
+    text-shadow: 1px 1px black;
+}
+.form-login h1{
+    text-align: center;
+}
+.form-login{
+    width: 25%;
+    margin: 0 auto;
+}
+.form-login input{
+    width: 100%;
+    border-radius: 5px;
+}
+
+.form-login button{
+    margin-top: 12px;
+    margin-left: 38%;
+}
