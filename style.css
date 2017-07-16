@@ -17,15 +17,25 @@ body, h1{
     flex-flow: row;
     flex-wrap: wrap;
 }
+.ocultar-elemento{
+    display: none !important;
+}
+.mostrar-elemento-block{
+    display: block;
+}
+.mostrar-elemento-inline{
+    display: inline;
+}
 .container-info > *{
     width: 47%;
     margin: 10px;
 }
+
 /***************************************************************/
 .campo-formulario > *{
     display: block;
 }
-.msn-error, .campo-formulario span{
+.form-login span{
     color: red;
     text-shadow: 1.2px 1.5px black;
 }
