@@ -31,7 +31,7 @@ body, h1{
     margin: 10px;
 }
 
-/***************************************************************/
+/*****************************INICIAR SESION**********************************/
 .campo-formulario > *{
     display: block;
 }
@@ -64,4 +64,44 @@ body, h1{
 .form-login button{
     margin-top: 12px;
     margin-left: 38%;
+}
+
+/*****************************CATALOGO**********************************/
+.formulario-buscar *{
+    display: block;
+    margin-right: 15px;
+}
+
+.panel-catalogo-productos .panel-heading {
+    height: 78px;
+}
+
+.panel-body{
+    display: flex;
+    display: -webkit-flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+}
+.item-producto{
+    width: 31%;
+    margin: 10px;
+}
+
+/*****************************BARRA DE NAVEGACION**********************************/
+.barra-navegacion{
+    width: 70%;
+    margin: 0 auto;
+    border-radius: 0px 0px 5px 5px;
+    margin-top: -1px;
+}
+
+
+/*****************************ITEM PRODUCTO**********************************/
+.imagen-producto{
+    height: 156px;
+}
+
+.panel-item-producto input{
+    width: 45px;
+    height: 33px;
 }

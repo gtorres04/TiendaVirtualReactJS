@@ -1,8 +1,15 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App.jsx';
-/*import 'normalize.css';
-import Bootstrap from 'bootstrap/dist/css/bootstrap.css';*/
 import IniciarSesion from './IniciarSesion.jsx';
+import App from './App.jsx';
+import { render } from 'react-dom';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
 
-ReactDOM.render(<IniciarSesion/>, document.getElementById('app'));
+render(
+    <BrowserRouter>
+        <Switch>
+            <Route exact path = '/' component = {IniciarSesion} />
+            <Route path = '/catalogo' component = {App} />
+        </Switch>
+    </BrowserRouter>,
+    document.getElementById('app')
+)

@@ -1,5 +1,6 @@
 import React from 'react';
 import * as request from 'superagent';
+import { Redirect } from 'react-router-dom';
 
 class IniciarSesion extends React.Component {
     constructor() {
@@ -9,12 +10,19 @@ class IniciarSesion extends React.Component {
          mostrarErrorCorreo: 'ocultar-elemento',
          mostrarErrorContrasena: 'ocultar-elemento',
          mostrarErrorForm: 'ocultar-elemento',
-         msnErrorForm: 'Error desconocido'
+         msnErrorForm: 'Error desconocido',
+         isUserValid : false
       }
 
     }
 
     render(){
+        const { isUserValid } = this.state;
+        if (isUserValid) {
+            return (
+                <Redirect to="/catalogo"/>
+            )
+        }
         return (
             <div className="container-login">
                 <div className="form-login">
@@ -90,6 +98,9 @@ class IniciarSesion extends React.Component {
                     });
                 }else{
                     //TODO implementar la redireccion.
+                    this.setState({
+                        isUserValid: true
+                    });
                 }
             })
             
