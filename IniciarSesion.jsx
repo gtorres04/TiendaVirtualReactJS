@@ -97,7 +97,6 @@ class IniciarSesion extends React.Component {
                         msnErrorForm: 'Usuario no encontrado'
                     });
                 }else{
-                    //TODO implementar la redireccion.
                     this.setState({
                         isUserValid: true
                     });

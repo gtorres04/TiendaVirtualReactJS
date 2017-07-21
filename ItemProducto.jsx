@@ -1,6 +1,7 @@
 import React from 'react';
 import * as request from 'superagent';
 import MenuOpciones from './MenuOpciones.jsx';
+import { Link } from 'react-router-dom';
 
 class ItemProducto extends React.Component {
     constructor() {
@@ -20,16 +21,16 @@ class ItemProducto extends React.Component {
             <div className="panel-item-producto panel panel-default">
                 <div className="panel-body">
                     <img className="imagen-producto" src="./assets/img/kjhgjgh.png" alt=""/>
-                    <h4>Nombre Producto</h4>
+                    <h4>Nombre Producto {this.props.producto.nombre}</h4>
                     <div>
-                        <label for="">Precio:&nbsp;</label><span>$400</span>
+                        <label htmlFor="">Precio:&nbsp;</label><span>$400</span>
                     </div>
                     <div>
-                        <label for="">Unidades Disponibles:&nbsp;</label><span>400</span>
+                        <label htmlFor="">Unidades Disponibles:&nbsp;</label><span>400</span>
                     </div>
                     <div>
-                        <Link className="btn btn-primary">Ver Mas</Link>
-                        <Link className="btn btn-warning">Añadir</Link>
+                        <Link to='/' className="btn btn-primary">Ver Mas</Link>
+                        <Link to='/' className="btn btn-warning">Añadir</Link>
                         <input type="number" name="cantidadAgregar"/>
                     </div>
                 </div>
