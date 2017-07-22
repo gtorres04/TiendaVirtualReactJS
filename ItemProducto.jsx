@@ -8,10 +8,8 @@ class ItemProducto extends React.Component {
       super();
 		
       this.state = {
-         mostrarErrorCorreo: 'ocultar-elemento',
-         mostrarErrorContrasena: 'ocultar-elemento',
-         mostrarErrorForm: 'ocultar-elemento',
-         msnErrorForm: 'Error desconocido'
+         unidadesDisponible : 0,
+         unidadesSolicidad: 0
       }
 
     }
@@ -26,16 +24,31 @@ class ItemProducto extends React.Component {
                         <label htmlFor="">Precio:&nbsp;</label><span>${this.props.producto.precio}</span>
                     </div>
                     <div>
-                        <label htmlFor="">Unidades Disponibles:&nbsp;</label><span>{this.props.producto.unidadesDisponibles}</span>
+                        <label htmlFor="">Unidades Disponibles:&nbsp;</label><span>{this.state.unidadesDisponible}</span>
                     </div>
                     <div className="controles-item">
                         <Link to='/' className="btn btn-primary">Ver Mas</Link>
                         <Link to='/' className="btn btn-warning">Añadir</Link>
-                        <input type="number" name="cantidadAgregar"/>
+                        <input type="number" name="cantidadAgregar" value={this.state.unidadesSolicidad} onChange={this.calcularUnidadesDisponibles.bind(this)}/>
                     </div>
                 </div>
             </div>
         );
+    }
+
+    calcularUnidadesDisponibles(event){
+        let cantidadSolicitada = event.target.value;
+        let cantidadDisponible = this.props.producto.unidadesDisponibles - cantidadSolicitada;
+        this.setState({
+            unidadesSolicidad: event.target.value,
+            unidadesDisponible: cantidadDisponible
+        });
+    }
+
+    componentWillMount(){
+        this.setState({
+            unidadesDisponible: this.props.producto.unidadesDisponibles
+        });
     }
 }
 export default ItemProducto;
