@@ -13,7 +13,9 @@ class Catalogo extends React.Component {
          mostrarErrorForm : 'ocultar-elemento',
          msnErrorForm : 'Error desconocido',
          mensaje :'hola soy un mensaje desde el catalogo',
-         productos : []
+         productos : [],
+         productosConsulta: [],
+         patronBusqueda: ''
       }
 
       this.getProductos();
@@ -22,7 +24,7 @@ class Catalogo extends React.Component {
 
     render(){
         var indents = [];
-        var productos = this.state.productos;
+        var productos = this.state.productosConsulta;
         for (var i = 0; i < productos.length; i++) {
             let producto = productos[i];
             indents.push(
@@ -39,7 +41,7 @@ class Catalogo extends React.Component {
                     <span className="panel-title">Catálogo de productos</span>
                     <div className="formulario-buscar navbar-right">
                         <label htmlFor="buscador">¿Que estas buscando?</label>
-                        <input type="text"/>
+                        <input type="text" value={this.state.patronBusqueda} onChange={this.busquedaProductos.bind(this)}/>
                     </div>
                     </div>
                     <div className="panel-body">
@@ -48,6 +50,23 @@ class Catalogo extends React.Component {
                 </div>
             </div>
         );
+    }
+    /**
+     * Metodo ejecutado en el onChange del campo de consulta. Consulta los productos relacionados con el patron.
+     * @param {*} event 
+     */
+    busquedaProductos(event) {
+        let patronEscrito = event.target.value;
+        this.setState({patronBusqueda: event.target.value});
+        let productos = this.state.productos;
+        let productosConsulta = [];
+        for (var index = 0; index < productos.length; index++) {
+            var element = productos[index];
+            if(element.nombre.includes(patronEscrito)){
+                productosConsulta.push(element);
+            }
+        }
+        this.setState({productosConsulta: productosConsulta});
     }
     /**
      * Consultar los productos existentes
@@ -60,7 +79,8 @@ class Catalogo extends React.Component {
                 console.log(res.body);
                 let productosRecuperados = res.body;
                 this.setState({
-                    productos: productosRecuperados
+                    productos: productosRecuperados,
+                    productosConsulta: productosRecuperados
                 });
                 
             })
