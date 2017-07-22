@@ -31,6 +31,13 @@ body, h1{
     margin: 10px;
 }
 
+.panel-body div {
+    display: block;
+}
+.controles-item *{
+    margin-right: 5px;
+}
+
 /*****************************INICIAR SESION**********************************/
 .campo-formulario > *{
     display: block;

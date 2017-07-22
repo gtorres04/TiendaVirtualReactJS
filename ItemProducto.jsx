@@ -20,15 +20,15 @@ class ItemProducto extends React.Component {
         return (
             <div className="panel-item-producto panel panel-default">
                 <div className="panel-body">
-                    <img className="imagen-producto" src="./assets/img/kjhgjgh.png" alt=""/>
-                    <h4>Nombre Producto {this.props.producto.nombre}</h4>
+                    <img className="imagen-producto" src={"./assets/img/"+this.props.producto.imagen} alt=""/>
+                    <h4>{this.props.producto.nombre}</h4>
                     <div>
-                        <label htmlFor="">Precio:&nbsp;</label><span>$400</span>
+                        <label htmlFor="">Precio:&nbsp;</label><span>${this.props.producto.precio}</span>
                     </div>
                     <div>
-                        <label htmlFor="">Unidades Disponibles:&nbsp;</label><span>400</span>
+                        <label htmlFor="">Unidades Disponibles:&nbsp;</label><span>{this.props.producto.unidadesDisponibles}</span>
                     </div>
-                    <div>
+                    <div className="controles-item">
                         <Link to='/' className="btn btn-primary">Ver Mas</Link>
                         <Link to='/' className="btn btn-warning">Añadir</Link>
                         <input type="number" name="cantidadAgregar"/>
