@@ -15,7 +15,8 @@ class Catalogo extends React.Component {
          mensaje :'hola soy un mensaje desde el catalogo',
          productos : [],
          productosConsulta: [],
-         patronBusqueda: ''
+         patronBusqueda: '',
+         productosPedidos: []
       }
 
       this.getProductos();
@@ -29,13 +30,13 @@ class Catalogo extends React.Component {
             let producto = productos[i];
             indents.push(
                 <div className="item-producto" key={i}>
-                    <ItemProducto producto = {producto} />
+                    <ItemProducto agregarPedido={this.agregarPedido.bind(this)} producto = {producto} productosPedidos={this.state.productosPedidos}/>
                 </div>
                 );
         }
         return (
             <div className="imagen-fondo-principal container-catalogo-productos">
-                <MenuOpciones />
+                <MenuOpciones cantidadPedidos={this.state.productosPedidos.length} />
                 <div className="panel-catalogo-productos panel panel-default">
                     <div className="panel-heading">
                     <span className="panel-title">Catálogo de productos</span>
@@ -50,6 +51,31 @@ class Catalogo extends React.Component {
                 </div>
             </div>
         );
+    }
+    /**
+     * Se agrega los productos como pedidos.
+     * @param {*} producto 
+     */
+    agregarPedido(producto){
+        console.log(this.state.productosPedidos.length);
+        console.log(producto);
+        let indexPedido = -1;
+        for (var index = 0; index < this.state.productosPedidos.length; index++) {
+            var element = this.state.productosPedidos[index];
+            if(element.id === producto.id){
+                indexPedido = index;
+                break;
+            }
+        }
+        if(indexPedido != -1){
+            this.state.productosPedidos[indexPedido].cantidadAComprar += producto.cantidadAComprar;
+        }else{
+            this.state.productosPedidos.push(producto);
+        }
+        let productosPedidosAux = this.state.productosPedidos;
+        this.setState({
+            productosPedidos: productosPedidosAux
+        });
     }
     /**
      * Metodo ejecutado en el onChange del campo de consulta. Consulta los productos relacionados con el patron.

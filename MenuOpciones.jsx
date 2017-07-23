@@ -31,7 +31,7 @@ class MenuOpciones extends React.Component {
                 <div className="collapse navbar-collapse navbar-ex1-collapse">
                     <ul className="nav navbar-nav navbar-right">
                     <li><Link to='/'><span className="glyphicon glyphicon-th"></span></Link></li>
-                    <li><Link to='/pedido'><span className="glyphicon glyphicon-shopping-cart"></span><span className="badge"></span></Link></li>
+                    <li><Link to='/pedido'><span className="glyphicon glyphicon-shopping-cart"></span><span className="badge">{this.props.cantidadPedidos}</span></Link></li>
                     <li><Link to='/'><span className="glyphicon glyphicon-inbox"></span></Link></li>
                     <li><Link to='/'><span className="glyphicon glyphicon-log-out"></span></Link></li>
                     </ul>
