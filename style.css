@@ -2,7 +2,7 @@
 body, h1{
     margin: 0px;
 }
-.panel-catalogo-productos, .panel-detalle-producto{
+.panel-catalogo-productos, .panel-detalle-producto, .panel-pedido-producto{
     width: 70%;
     margin: 0 auto;
     margin-top: 10px;
@@ -127,4 +127,10 @@ body, h1{
 }
 .panel-detalle-producto a{
     margin-left: 9px;
+}
+
+/*****************************PEDIDOS PRODUCTO**********************************/
+
+.panel-pedido-producto .imagen-pedidos{
+    width: 80px;
 }

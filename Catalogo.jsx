@@ -2,7 +2,7 @@ import React from 'react';
 import * as request from 'superagent';
 import MenuOpciones from './MenuOpciones.jsx';
 import ItemProducto from './ItemProducto.jsx';
-import Utilidades from './Utilidades'
+import Utilidades from './Utilidades';
 
 class Catalogo extends React.Component {
     constructor() {
