@@ -84,7 +84,17 @@ class Pedido extends React.Component {
     }
 
     pagarPedidos(){
-        
+        for (var index = 0; index < Utilidades.productosPedidos.length; index++) {
+            var element = Utilidades.productosPedidos[index];
+            request
+            .post('https://tienda-9303e.firebaseio.com/pedidos.json')
+            .set('Content-Type', 'application/json')
+            .send(JSON.stringify(element))
+            .end((err, res)=>{
+                console.log(res.body);
+            })
+        }
+        this.cancelarPedidos();
     }
 }
 

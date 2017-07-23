@@ -104,21 +104,33 @@ class Catalogo extends React.Component {
             .end((err, res) => {
                 console.log(res.body);
                 let productosRecuperados = res.body;
-                for (var index = 0; index < productosRecuperados.length; index++) {
-                    var element = productosRecuperados[index];
-                    for (var indexUtil = 0; indexUtil < Utilidades.productosPedidos.length; indexUtil++) {
-                        var elementUtil = Utilidades.productosPedidos[indexUtil];
-                        if(element.id == elementUtil.id){
-                            productosRecuperados[index].unidadesDisponibles -= elementUtil.cantidadAComprar;
+                request
+                    .get('https://tienda-9303e.firebaseio.com/pedidos.json')
+                    .set('Content-Type', 'application/json')
+                    .end((errPedido, resPedido) => {
+                        console.log(resPedido.body);
+                        let pedidosRecuperados = resPedido.body;
+                        for (var index = 0; index < productosRecuperados.length; index++) {
+                            var element = productosRecuperados[index];
+                            for (var indexUtil = 0; indexUtil < Utilidades.productosPedidos.length; indexUtil++) {
+                                var elementUtil = Utilidades.productosPedidos[indexUtil];
+                                if(element.id == elementUtil.id){
+                                    productosRecuperados[index].unidadesDisponibles -= elementUtil.cantidadAComprar;
+                                }
+                            }
+                            for (let key in pedidosRecuperados) {
+                                var pedido = pedidosRecuperados[key];
+                                if(element.id == pedido.id){
+                                    productosRecuperados[index].unidadesDisponibles -= pedido.cantidadAComprar;
+                                }
+                            }
                         }
-                    }
-                }
-                this.setState({
-                    productos: productosRecuperados,
-                    productosConsulta: productosRecuperados
-                });
-                
-            })
+                        this.setState({
+                            productos: productosRecuperados,
+                            productosConsulta: productosRecuperados
+                        });
+                    });
+            });
     }
 }
 
