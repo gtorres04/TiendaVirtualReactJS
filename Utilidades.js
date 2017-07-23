@@ -1,5 +1,6 @@
 const Utilidades = {
-  server: window.location.origin+'/'
+  server: window.location.origin+'/',
+  productosPedidos: []
 }
 
 export default Utilidades;

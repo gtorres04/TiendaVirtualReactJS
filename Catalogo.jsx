@@ -2,6 +2,7 @@ import React from 'react';
 import * as request from 'superagent';
 import MenuOpciones from './MenuOpciones.jsx';
 import ItemProducto from './ItemProducto.jsx';
+import Utilidades from './Utilidades'
 
 class Catalogo extends React.Component {
     constructor() {
@@ -36,7 +37,7 @@ class Catalogo extends React.Component {
         }
         return (
             <div className="imagen-fondo-principal container-catalogo-productos">
-                <MenuOpciones cantidadPedidos={this.state.productosPedidos.length} />
+                <MenuOpciones cantidadPedidos={Utilidades.productosPedidos.length} />
                 <div className="panel-catalogo-productos panel panel-default">
                     <div className="panel-heading">
                     <span className="panel-title">Catálogo de productos</span>
@@ -57,24 +58,23 @@ class Catalogo extends React.Component {
      * @param {*} producto 
      */
     agregarPedido(producto){
-        console.log(this.state.productosPedidos.length);
+        console.log(Utilidades.productosPedidos.length);
         console.log(producto);
         let indexPedido = -1;
-        for (var index = 0; index < this.state.productosPedidos.length; index++) {
-            var element = this.state.productosPedidos[index];
+        for (var index = 0; index < Utilidades.productosPedidos.length; index++) {
+            var element = Utilidades.productosPedidos[index];
             if(element.id === producto.id){
                 indexPedido = index;
                 break;
             }
         }
         if(indexPedido != -1){
-            this.state.productosPedidos[indexPedido].cantidadAComprar += producto.cantidadAComprar;
+            Utilidades.productosPedidos[indexPedido].cantidadAComprar += producto.cantidadAComprar;
         }else{
-            this.state.productosPedidos.push(producto);
+            Utilidades.productosPedidos.push(producto);
         }
-        let productosPedidosAux = this.state.productosPedidos;
         this.setState({
-            productosPedidos: productosPedidosAux
+            productosPedidos: Utilidades.productosPedidosAux
         });
     }
     /**
@@ -104,6 +104,15 @@ class Catalogo extends React.Component {
             .end((err, res) => {
                 console.log(res.body);
                 let productosRecuperados = res.body;
+                for (var index = 0; index < productosRecuperados.length; index++) {
+                    var element = productosRecuperados[index];
+                    for (var indexUtil = 0; indexUtil < Utilidades.productosPedidos.length; indexUtil++) {
+                        var elementUtil = Utilidades.productosPedidos[indexUtil];
+                        if(element.id == elementUtil.id){
+                            productosRecuperados[index].unidadesDisponibles -= elementUtil.cantidadAComprar;
+                        }
+                    }
+                }
                 this.setState({
                     productos: productosRecuperados,
                     productosConsulta: productosRecuperados

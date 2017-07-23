@@ -39,6 +39,7 @@ class ItemProducto extends React.Component {
     }
     agregarPedido(){
         this.props.producto.unidadesDisponibles = this.state.unidadesDisponible;
+        this.props.producto.cantidadAComprar = Number.parseInt(this.state.unidadesSolicitadas);
         this.props.agregarPedido(this.props.producto);
         this.setState({
             unidadesSolicitadas: 0

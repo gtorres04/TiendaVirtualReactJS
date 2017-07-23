@@ -2,7 +2,7 @@ import React from 'react';
 import * as request from 'superagent';
 import MenuOpciones from './MenuOpciones.jsx';
 import { Link } from 'react-router-dom';
-import Utilidades from './Utilidades'
+import Utilidades from './Utilidades';
 
 class DetalleProducto extends React.Component {
     constructor() {
@@ -17,7 +17,7 @@ class DetalleProducto extends React.Component {
     render(){
         return (
             <div className="imagen-fondo-principal">
-                <MenuOpciones />
+                <MenuOpciones cantidadPedidos={Utilidades.productosPedidos.length} />
                 <div className="panel-detalle-producto panel panel-default">
                     <div className="panel-heading">
                     <span className="panel-title">{this.state.producto.nombre}</span>
